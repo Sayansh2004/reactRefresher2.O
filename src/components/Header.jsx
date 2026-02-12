@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useOnlineStatus } from "../hooks/useOnlineStatus";
 
 export default function Header(){
+    const onlineStatus=useOnlineStatus();
     return(
         <div className="flex justify-between bg-white shadow-md">
             <div className="p-2">
@@ -8,6 +10,7 @@ export default function Header(){
         </div>
         <div>
             <ul className="flex gap-3 p-4">
+                {onlineStatus?"online ✅":" offline❌"}
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
