@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
+import UserContext from "../hooks/UserContext";
 
 
 export default function ({originalList,setFilteredList}) {
+
+  const {setUserName,loggedInUser}=useContext(UserContext);
   const [searchText,setSearchText]=useState("");
   const handleClick=()=>{
  
@@ -29,6 +32,11 @@ export default function ({originalList,setFilteredList}) {
     
       <button className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 shadow-sm' onClick={handleClick}>Top Rated Restaurants</button>
       <button className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 shadow-sm' onClick={handleResetClick}>Reset</button>
+
+      <div>
+        <label htmlFor="username">Enter username</label>
+        <input type="text" placeholder="Enter name" id="username" value={loggedInUser} onChange={(e)=>setUserName(e.target.value)}/>
+      </div>
     </div>
   )
 }

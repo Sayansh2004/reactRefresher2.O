@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 import { useOnlineStatus } from "../hooks/useOnlineStatus";
+import { useState,useContext } from "react";
+import UserContext from "../hooks/UserContext";
 
 export default function Header(){
     const onlineStatus=useOnlineStatus();
+    const[loginInfo,setLoginInfo]=useState(false);
+
+    const {loggedInUser}=useContext(UserContext);
+    
+
     return(
         <div className="flex justify-between bg-white shadow-md">
             <div className="p-2">
@@ -15,6 +22,8 @@ export default function Header(){
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
                 <li><Link to="/cart">Cart</Link></li>
+                <button onClick={()=>setLoginInfo(!loginInfo)}>{loginInfo?"logout":"login"}</button>
+                <li>{loggedInUser}</li>
             </ul>
         </div>
             </div>

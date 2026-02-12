@@ -12,6 +12,7 @@ import { lazy,Suspense } from 'react'
 import Body from './components/Body.jsx'
 import RestaurantMenu from './components/RestaurantMenu.jsx'
 import Shimmer from './shimmer/Shimmer.jsx'
+import UserContext from './hooks/UserContext.js'
 
 const Groceries=lazy(()=>import("./components/Groceries.jsx"));
 
@@ -55,6 +56,6 @@ const browserRouter=createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <RouterProvider router={browserRouter}></RouterProvider>
+      <RouterProvider router={browserRouter}></RouterProvider>
   </StrictMode>,
 )
