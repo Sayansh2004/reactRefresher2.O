@@ -8,9 +8,12 @@ import Contact from './components/Contact.jsx'
 import Cart from './components/Cart.jsx'
 import Error from './components/Error.jsx'
 import RestaurantList from './components/RestaurantList.jsx'
-
+import { lazy,Suspense } from 'react'
 import Body from './components/Body.jsx'
 import RestaurantMenu from './components/RestaurantMenu.jsx'
+import Shimmer from './shimmer/Shimmer.jsx'
+
+const Groceries=lazy(()=>import("./components/Groceries.jsx"));
 
 
 const browserRouter=createBrowserRouter([
@@ -40,6 +43,10 @@ const browserRouter=createBrowserRouter([
       },{
         path:"/restaurants/:resId",
         element:<RestaurantMenu/>
+      },
+      {
+        path:"/groceries",
+        element:<Suspense fallback={Shimmer}><Groceries/></Suspense>
       }
 
     ],
