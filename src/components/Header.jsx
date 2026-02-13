@@ -2,12 +2,17 @@ import { Link } from "react-router-dom";
 import { useOnlineStatus } from "../hooks/useOnlineStatus";
 import { useState,useContext } from "react";
 import UserContext from "../hooks/UserContext";
+import { useSelector } from "react-redux";
 
 export default function Header(){
     const onlineStatus=useOnlineStatus();
     const[loginInfo,setLoginInfo]=useState(false);
 
     const {loggedInUser}=useContext(UserContext);
+
+    // This is known as subscribing to the store
+    const cartItems=useSelector((store)=>store.cart.items);
+    console.log(cartItems);
     
 
     return(
@@ -21,7 +26,7 @@ export default function Header(){
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
-                <li><Link to="/cart">Cart</Link></li>
+                <li><Link to="/cart">🛒 Cart -({cartItems.length}) </Link></li>
                 <button onClick={()=>setLoginInfo(!loginInfo)}>{loginInfo?"logout":"login"}</button>
                 <li>{loggedInUser}</li>
             </ul>

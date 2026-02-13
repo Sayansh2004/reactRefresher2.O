@@ -2,6 +2,8 @@ import Header from "./components/Header"
 import { Outlet } from "react-router-dom"
 import { useState,useEffect } from 'react'
 import UserContext from "./hooks/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 
 export default function App() {
@@ -19,10 +21,13 @@ export default function App() {
 
   return (
     <div>
-       <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
+      <Provider store={appStore}>
+         <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
              <Header/>
              <Outlet/>
        </UserContext.Provider>
+      </Provider>
+      
 
     </div>
   
